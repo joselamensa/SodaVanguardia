@@ -8,24 +8,36 @@
 /* ── VARIABLES ─────────────────────────────────── */
 :root {
   --color-bg:           #FDFDF8;
-  --color-primary:      #7ECECA;
-  --color-primary-dark: #5BB0B0;
-  --color-text:         #1A1A1A;
-  --color-text-light:   #666666;
-  --color-border:       #E8E8E2;
+  --color-primary:      #9ad5ce;   /* Primario marca  */
+  --color-primary-dark: #254d59;   /* Secundario marca — reemplaza todo el negro */
+  --color-text:         #254d59;
+  --color-text-light:   #527080;
+  --color-border:       #d8eae8;
   --color-wa:           #25D366;
   --color-wa-dark:      #1DA851;
 
-  --color-serrana:      #5A8A3C;
-  --color-limon:        #F2C12E;
-  --color-agua-con-gas: #5BB8C4;
-  --color-naranja:      #E8821A;
-  --color-agua:         #5B9BD5;
-  --color-pomelo:       #E85454;
-  --color-tonica:       #E8906A;
+  /* Colores oficiales por sabor */
+  --color-serrana:        #7fc678;
+  --color-serrana-fondo:  #f1f8f0;
+  --color-limon:          #f8d82d;
+  --color-limon-fondo:    #fffde5;
+  --color-agua-con-gas:   #6dcbd7;
+  --color-agua-con-gas-fondo: #eaf6fa;
+  --color-naranja:        #f8951d;
+  --color-naranja-fondo:  #fee8d9;
+  --color-agua:           #47adcf;
+  --color-agua-fondo:     #ebf7fa;
+  --color-pomelo:         #f37971;
+  --color-pomelo-fondo:   #fbebe9;
+  --color-tonica:         #f7a39c;
+  --color-tonica-fondo:   #fff6f4;
 
+  /* Fuente principal: Athelas (Adobe Fonts).
+     Para activarla agregá tu kit de Adobe Fonts en el <head>:
+     <link rel="stylesheet" href="https://use.typekit.net/TU-KIT-ID.css">
+     Mientras tanto usa Playfair Display como fallback visual. */
   --font-title: 'Bebas Neue', sans-serif;
-  --font-body:  'Lato', sans-serif;
+  --font-body:  athelas, 'Playfair Display', Georgia, serif;
 
   --radius-sm:  10px;
   --radius-md:  20px;
@@ -119,7 +131,7 @@ input, textarea { font-family: inherit; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 200;
-  background: #1A1A1A;
+  background: #254d59;
   transition: transform 0.3s ease;
 }
 .navbar--hidden { transform: translateY(-100%); }
@@ -134,11 +146,12 @@ input, textarea { font-family: inherit; }
   justify-content: space-between;
 }
 
-/* Logo: PNG transparente sobre oscuro — se ve perfecto */
+/* Logo circular */
 .navbar__logo img {
   height: 52px;
-  width: auto;
-  object-fit: contain;
+  width: 52px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 /* Links de nav — ocultos en mobile, visibles en desktop */
@@ -151,7 +164,7 @@ input, textarea { font-family: inherit; }
   position: fixed;
   inset: 0;
   top: var(--navbar-h);
-  background: #1A1A1A;
+  background: #254d59;
   z-index: 190;
   display: flex;
   flex-direction: column;
@@ -174,10 +187,10 @@ input, textarea { font-family: inherit; }
   padding: 0.9rem 2rem;
   width: 100%;
   text-align: center;
-  border-bottom: 1px solid #2e2e2e;
+  border-bottom: 1px solid #1e3d48;
   transition: color 0.2s ease, background 0.2s ease;
 }
-.navbar__overlay .navbar__link:first-child { border-top: 1px solid #2e2e2e; }
+.navbar__overlay .navbar__link:first-child { border-top: 1px solid #1e3d48; }
 .navbar__overlay .navbar__link:active,
 .navbar__overlay .navbar__link:hover { color: var(--color-primary); background: rgba(126,202,202,0.06); }
 
@@ -516,7 +529,7 @@ input, textarea { font-family: inherit; }
 
 /* ── FOOTER ─────────────────────────────────────── */
 .footer {
-  background: #1A1A1A;
+  background: #254d59;
   color: #ccc;
   padding: 2.5rem 1.25rem 1.25rem;
 }
@@ -527,13 +540,13 @@ input, textarea { font-family: inherit; }
   flex-direction: column;
   gap: 1.8rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid #2e2e2e;
+  border-bottom: 1px solid #1e3d48;
   max-width: var(--container);
   margin: 0 auto;
 }
 .footer__brand { display: flex; flex-direction: column; gap: 0.8rem; }
-.footer__brand img { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; }
-.footer__brand p { font-size: 0.85rem; color: #888; line-height: 1.6; }
+.footer__brand img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
+.footer__brand p { font-size: 0.85rem; color: #7eaab8; line-height: 1.6; }
 
 .footer__nav,
 .footer__contact {
@@ -544,7 +557,7 @@ input, textarea { font-family: inherit; }
 .footer__nav a,
 .footer__contact a {
   font-size: 0.9rem;
-  color: #888;
+  color: #7eaab8;
   min-height: 36px;
   display: flex;
   align-items: center;
@@ -555,7 +568,7 @@ input, textarea { font-family: inherit; }
   margin: 1.2rem auto 0;
   text-align: center;
 }
-.footer__bottom p { font-size: 0.8rem; color: #555; }
+.footer__bottom p { font-size: 0.8rem; color: #527080; }
 
 /* ── ANIMACIONES ────────────────────────────────── */
 @keyframes aparecer {

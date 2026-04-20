@@ -32,13 +32,16 @@
   }
   </script>
 
-  <!-- Favicon: círculo oscuro con SV en teal — legible en cualquier tab -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%231A1A1A'/><text x='50' y='62' font-size='38' fill='%237ECECA' font-family='sans-serif' font-weight='900' text-anchor='middle' letter-spacing='-1'>SV</text></svg>" />
+  <!-- Favicon: círculo azul marca con SV en primario -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23254d59'/><text x='50' y='62' font-size='38' fill='%239ad5ce' font-family='sans-serif' font-weight='900' text-anchor='middle' letter-spacing='-1'>SV</text></svg>" />
 
-  <!-- Google Fonts -->
+  <!-- Adobe Fonts (Athelas) — reemplazá TU-KIT-ID con tu kit de Adobe Fonts -->
+  <!-- <link rel="stylesheet" href="https://use.typekit.net/TU-KIT-ID.css"> -->
+
+  <!-- Google Fonts: Bebas Neue (títulos display) + Playfair Display (fallback de Athelas) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
   <!-- Preload hero image -->
   <link rel="preload" as="image" href="imgs/todas-botellas.jpeg" fetchpriority="high" />
@@ -53,7 +56,7 @@
   <header class="navbar" id="navbar">
     <div class="navbar__container">
       <a href="#hero" class="navbar__logo">
-        <img src="imgs/logo.png" alt="Soda Vanguardia" height="44" width="44" />
+        <img src="imgs/logocirular.jpeg" alt="Soda Vanguardia" height="44" width="44" />
       </a>
 
       <!-- Nav desktop -->
@@ -88,7 +91,7 @@
     <section id="hero" class="hero">
       <div class="hero__content">
         <div class="hero__text">
-          <span class="eyebrow">Elaboración Artesanal · Sierras de Córdoba</span>
+          <span class="eyebrow">Elaboración Artesanal · Sierras de Córdoba, Argentina</span>
           <h1 class="hero__title">
             HECHA CON<br />
             AGUA DE<br />
@@ -149,8 +152,8 @@
 
       <div class="products-grid stagger">
 
-        <div class="product-card" data-color="#5A8A3C">
-          <div class="product-card__img-wrap">
+        <div class="product-card" data-color="#7fc678">
+          <div class="product-card__img-wrap" style="background:#f1f8f0;">
             <img src="imgs/serrana-product.jpeg" alt="Soda Serrana 500cc" loading="lazy" decoding="async" width="300" height="420" />
           </div>
           <div class="product-card__info">
@@ -160,8 +163,8 @@
           </div>
         </div>
 
-        <div class="product-card" data-color="#F2C12E">
-          <div class="product-card__img-wrap">
+        <div class="product-card" data-color="#f8d82d">
+          <div class="product-card__img-wrap" style="background:#fffde5;">
             <img src="imgs/limon-product.jpeg" alt="Soda Limón 500cc" loading="lazy" decoding="async" width="300" height="420" />
           </div>
           <div class="product-card__info">
@@ -171,8 +174,8 @@
           </div>
         </div>
 
-        <div class="product-card" data-color="#5BB8C4">
-          <div class="product-card__img-wrap">
+        <div class="product-card" data-color="#6dcbd7">
+          <div class="product-card__img-wrap" style="background:#eaf6fa;">
             <img src="imgs/agua-con-gas-product.jpeg" alt="Agua con Gas 500cc" loading="lazy" decoding="async" width="300" height="420" />
           </div>
           <div class="product-card__info">
@@ -182,8 +185,8 @@
           </div>
         </div>
 
-        <div class="product-card" data-color="#E8821A">
-          <div class="product-card__img-wrap">
+        <div class="product-card" data-color="#f8951d">
+          <div class="product-card__img-wrap" style="background:#fee8d9;">
             <img src="imgs/naranja-product.jpeg" alt="Soda Naranja 500cc" loading="lazy" decoding="async" width="300" height="420" />
           </div>
           <div class="product-card__info">
@@ -193,8 +196,8 @@
           </div>
         </div>
 
-        <div class="product-card" data-color="#5B9BD5">
-          <div class="product-card__img-wrap">
+        <div class="product-card" data-color="#47adcf">
+          <div class="product-card__img-wrap" style="background:#ebf7fa;">
             <img src="imgs/agua-product.jpeg" alt="Agua Vanguardia 500cc" loading="lazy" decoding="async" width="300" height="420" />
           </div>
           <div class="product-card__info">
@@ -204,8 +207,8 @@
           </div>
         </div>
 
-        <div class="product-card" data-color="#E85454">
-          <div class="product-card__img-wrap">
+        <div class="product-card" data-color="#f37971">
+          <div class="product-card__img-wrap" style="background:#fbebe9;">
             <img src="imgs/pomelo-product.jpeg" alt="Soda Pomelo 500cc" loading="lazy" decoding="async" width="300" height="420" />
           </div>
           <div class="product-card__info">
@@ -215,8 +218,8 @@
           </div>
         </div>
 
-        <div class="product-card" data-color="#E8906A">
-          <div class="product-card__img-wrap">
+        <div class="product-card" data-color="#f7a39c">
+          <div class="product-card__img-wrap" style="background:#fff6f4;">
             <img src="imgs/agua-tonica-product.jpeg" alt="Agua Tónica 500cc" loading="lazy" decoding="async" width="300" height="420" />
           </div>
           <div class="product-card__info">
@@ -257,7 +260,7 @@
         <div class="nosotros__text reveal reveal--right">
           <span class="eyebrow">Sobre Nosotros</span>
           <h2>Más que una soda.<br />Una forma de hacer<br />las cosas.</h2>
-          <p>Somos Soda Vanguardia, una marca artesanal nacida en las Sierras de Córdoba. Cada botella que producimos es elaborada con agua de manantial serrano, ingredientes naturales y el cuidado de quien hace las cosas con las manos.</p>
+          <p>Somos Soda Vanguardia, una marca artesanal nacida en las Sierras de Córdoba, Argentina. Cada botella que producimos es elaborada con agua filtrada, purificada y esterilizada por luz ultravioleta, ingredientes naturales y el cuidado de quien hace las cosas con las manos.</p>
           <p>Creemos en el sabor genuino, en los envases retornables que cuidan el entorno, y en la tradición de la soda artesanal como parte de la mesa argentina.</p>
 
           <div class="valores-grid">
@@ -271,7 +274,7 @@
             </div>
             <div class="valor">
               <span class="valor__icon">💧</span>
-              <span class="valor__label">Agua de las sierras</span>
+              <span class="valor__label">Agua filtrada y purificada UV</span>
             </div>
             <div class="valor">
               <span class="valor__icon">🤲</span>
@@ -352,8 +355,8 @@
   <footer class="footer reveal">
     <div class="footer__top">
       <div class="footer__brand">
-        <img src="imgs/logo.png" alt="Soda Vanguardia" width="60" height="60" loading="lazy" />
-        <p>Sodas artesanales elaboradas con agua de las Sierras de Córdoba.</p>
+        <img src="imgs/logocirular.jpeg" alt="Soda Vanguardia" width="60" height="60" loading="lazy" />
+        <p>Sodas artesanales elaboradas con agua de las Sierras de Córdoba, Argentina.</p>
       </div>
       <nav class="footer__nav" aria-label="Navegación footer">
         <a href="#hero">Inicio</a>
@@ -368,7 +371,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <p>© 2024 Soda Vanguardia. Hecho con 💧 en las Sierras de Córdoba.</p>
+      <p>© 2026 Soda Vanguardia. Hecho con 💧 en las Sierras de Córdoba.</p>
     </div>
   </footer>
 
