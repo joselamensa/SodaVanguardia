@@ -13,12 +13,30 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── NAVBAR ──────────────────────────────────── */
   const navbar     = document.getElementById('navbar');
   const hamburger  = document.getElementById('hamburger');
-  const navMenu    = document.getElementById('navMenu');
+  const navOverlay = document.getElementById('navOverlay');
   const navLinks   = document.querySelectorAll('.navbar__link');
   let lastScrollY  = window.scrollY;
+  let menuOpen     = false;
 
-  // Ocultar/mostrar navbar al hacer scroll
+  function closeMenu() {
+    menuOpen = false;
+    navOverlay.classList.remove('nav--open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  function openMenu() {
+    menuOpen = true;
+    navOverlay.classList.add('nav--open');
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden'; // bloquear scroll de fondo
+  }
+
+  // Ocultar/mostrar navbar al hacer scroll (solo si el menú está cerrado)
   window.addEventListener('scroll', () => {
+    if (menuOpen) return;
     const currentY = window.scrollY;
     if (currentY > lastScrollY && currentY > 80) {
       navbar.classList.add('navbar--hidden');
@@ -30,18 +48,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Hamburger toggle
   hamburger.addEventListener('click', () => {
-    const isOpen = navMenu.classList.toggle('nav--open');
-    hamburger.classList.toggle('open', isOpen);
-    hamburger.setAttribute('aria-expanded', isOpen);
+    menuOpen ? closeMenu() : openMenu();
   });
 
   // Cerrar menú al hacer click en un link
   navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      navMenu.classList.remove('nav--open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-    });
+    link.addEventListener('click', () => closeMenu());
+  });
+
+  // Cerrar con Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menuOpen) closeMenu();
   });
 
   /* ── ACTIVE NAV LINK por sección ─────────────── */
