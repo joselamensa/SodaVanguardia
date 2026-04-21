@@ -342,13 +342,18 @@ input, textarea { font-family: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 0.75rem;
-  height: 160px;
+  padding: 0;
+  height: 220px;
+  overflow: hidden; /* recorta el zoom */
 }
 .product-card__img-wrap img {
+  width: 100%;
   height: 100%;
-  width: auto;
   object-fit: contain;
+  /* Zoom para que la botella llene el espacio, no el fondo gris */
+  transform: scale(1.55);
+  transform-origin: center center;
+  transition: transform 0.3s ease;
 }
 
 .product-card__info {
@@ -620,6 +625,35 @@ input, textarea { font-family: inherit; }
   .reveal, .stagger > * { opacity: 1 !important; transform: none !important; }
 }
 
+/* ── WHATSAPP FAB ───────────────────────────────── */
+.whatsapp-fab {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 300;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: fabEntrada 0.5s ease 1s both;
+}
+.whatsapp-fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+}
+.whatsapp-fab:active { transform: scale(0.95); }
+
+@keyframes fabEntrada {
+  from { opacity: 0; transform: scale(0) rotate(-45deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
 /* ── POLISH GLOBAL ──────────────────────────────── */
 ::selection { background: rgba(126,202,202,0.35); color: var(--color-text); }
 
@@ -640,7 +674,7 @@ input, textarea { font-family: inherit; }
 
   /* Productos: 3 columnas */
   .products-grid { grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
-  .product-card__img-wrap { height: 200px; }
+  .product-card__img-wrap { height: 240px; padding: 0; overflow: hidden; }
   .product-card__name { font-size: 1.7rem; }
 
   /* Nosotros imagen más alta */
@@ -758,9 +792,9 @@ input, textarea { font-family: inherit; }
     transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
   }
-  .product-card__img-wrap { height: 260px; }
-  .product-card__img-wrap img { transition: transform 0.3s ease; }
-  .product-card:hover .product-card__img-wrap img { transform: scale(1.05); }
+  .product-card__img-wrap { height: 280px; padding: 0; overflow: hidden; }
+  .product-card__img-wrap img { transform: scale(1.45); transition: transform 0.3s ease; }
+  .product-card:hover .product-card__img-wrap img { transform: scale(1.55); }
   .product-card__name { font-size: 1.8rem; }
   .product-card__sub  { font-size: 0.75rem; }
   /* En desktop el desc se oculta y aparece en hover */
