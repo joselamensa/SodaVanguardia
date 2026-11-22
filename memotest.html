@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memotest | Soda Vanguardia</title>
+  <meta name="description" content="Encontrá los 7 pares de sabores de Soda Vanguardia y ganate una soda al azar." />
+  <!-- Página de juego: se llega por QR, no la indexamos -->
+  <meta name="robots" content="noindex" />
+  <meta property="og:title" content="Memotest Vanguardia — ganate una soda" />
+  <meta property="og:description" content="Encontrá los 7 pares de sabores y ganate una soda al azar." />
+  <meta property="og:image" content="imgs/todas-botellas.jpeg" />
+  <meta name="theme-color" content="#254d59" />
+
+  <link rel="icon" href="imgs/logocirular.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/games.css" />
+</head>
+<body class="game memo">
+
+  <header class="game-top">
+    <a href="index.html" class="game-top__logo" aria-label="Ir al sitio de Soda Vanguardia">
+      <img src="imgs/logocirular.jpeg" alt="Soda Vanguardia" width="48" height="48" />
+    </a>
+    <a href="index.html" class="game-top__link">Ver sabores →</a>
+  </header>
+
+  <main>
+    <div class="game-title">
+      <span class="eyebrow">Soda Vanguardia · Juego</span>
+      <h1>MEMOTEST<br />DE SABORES</h1>
+      <p>Encontrá los 7 pares en <strong id="subSegundos">40</strong> segundos y ganate una soda de <strong>sabor sorpresa</strong>.</p>
+      <p class="game-title__nota">El reloj arranca cuando das vuelta la primera carta.<span id="notaPartidas"></span></p>
+    </div>
+
+    <div class="memo__stats" aria-live="off">
+      <div class="stat"><strong id="stPares">0/7</strong><span>Pares</span></div>
+      <div class="stat"><strong id="stMov">0</strong><span>Intentos</span></div>
+      <div class="stat" id="statTiempo"><strong id="stTiempo">0:40</strong><span>Tiempo</span></div>
+    </div>
+    <div class="memo__barra" aria-hidden="true"><span id="barraTiempo"></span></div>
+
+    <div class="memo__board" id="tablero" role="group" aria-label="Tablero de memotest, 14 cartas"></div>
+    <p class="sr-only" id="estado" role="status" aria-live="polite"></p>
+
+    <section class="ya-jugo" id="yaJugo" hidden></section>
+
+  </main>
+
+  <!-- Premio -->
+  <dialog class="premio" id="premio" aria-labelledby="premioTitulo">
+    <div class="boleto">
+      <div class="boleto__head">
+        <span class="eyebrow">Memotest completo</span>
+        <h2 id="premioTitulo">¡GANASTE!</h2>
+      </div>
+      <div class="boleto__img" data-premio-fondo><img data-premio-img src="" alt="" /></div>
+      <div class="boleto__body">
+        <p>Tu premio: una soda <strong data-premio-sabor></strong></p>
+        <span class="codigo-chip" data-premio-codigo></span>
+      </div>
+      <div class="boleto__perf" aria-hidden="true"></div>
+      <div class="boleto__body boleto__btns">
+        <div class="canje-wrap" data-premio-acciones></div>
+        <button type="button" class="btn btn--ghost btn--full" data-premio-cerrar>Cerrar</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Se acabó el tiempo -->
+  <dialog class="premio" id="finTiempo" aria-labelledby="finTitulo">
+    <div class="boleto">
+      <div class="boleto__head">
+        <span class="eyebrow">Tiempo</span>
+        <h2 id="finTitulo">¡SE ACABÓ!</h2>
+      </div>
+      <div class="boleto__body">
+        <p id="finTexto"></p>
+        <button type="button" class="btn btn--primary btn--full" id="btnReintentar">Intentar de nuevo</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="js/juegos-comun.js"></script>
+  <script src="js/memotest.js"></script>
+</body>
+</html>

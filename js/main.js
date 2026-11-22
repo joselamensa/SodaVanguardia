@@ -105,32 +105,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── PRODUCT CARDS: color accent ─────────────── */
   const productCards = document.querySelectorAll('.product-card');
+  // El color de cada sabor se expone como --accent; el CSS lo usa en :hover y :focus-visible
   productCards.forEach(card => {
-    const color = card.dataset.color;
-    if (!color) return;
-    card.addEventListener('mouseenter', () => {
-      card.style.borderBottomColor = color;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.borderBottomColor = 'transparent';
-    });
-    // Touch: mostrar desc siempre en mobile
-    card.addEventListener('touchstart', () => {
-      const desc = card.querySelector('.product-card__desc');
-      if (desc) { desc.style.opacity = '1'; desc.style.transform = 'translateY(0)'; }
-    }, { passive: true });
+    if (card.dataset.color) card.style.setProperty('--accent', card.dataset.color);
   });
 
   /* ── FORMULARIO → WHATSAPP ───────────────────── */
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
+    const campos = [
+      { el: document.getElementById('nombre'),  error: document.getElementById('nombre-error'),  msg: 'Contanos cómo te llamás.' },
+      { el: document.getElementById('mensaje'), error: document.getElementById('mensaje-error'), msg: 'Escribí tu mensaje para poder enviarlo.' }
+    ];
+
+    function setError(campo, mostrar) {
+      campo.error.textContent = mostrar ? campo.msg : '';
+      campo.error.hidden = !mostrar;
+      campo.el.setAttribute('aria-invalid', mostrar ? 'true' : 'false');
+    }
+
+    // Limpiar el error apenas la persona empieza a corregir
+    campos.forEach(campo => {
+      campo.el.addEventListener('input', () => {
+        if (campo.el.value.trim()) setError(campo, false);
+      });
+    });
+
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const nombre  = document.getElementById('nombre').value.trim();
-      const mensaje = document.getElementById('mensaje').value.trim();
+      let primerInvalido = null;
+      campos.forEach(campo => {
+        const vacio = !campo.el.value.trim();
+        setError(campo, vacio);
+        if (vacio && !primerInvalido) primerInvalido = campo.el;
+      });
+      if (primerInvalido) { primerInvalido.focus(); return; }
 
-      if (!nombre || !mensaje) return;
+      const nombre  = campos[0].el.value.trim();
+      const mensaje = campos[1].el.value.trim();
 
       const texto = `Hola Soda Vanguardia! Soy ${nombre}. ${mensaje}`;
 

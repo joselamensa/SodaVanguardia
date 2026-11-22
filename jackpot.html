@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lotería Vanguardia | Soda Vanguardia</title>
+  <meta name="description" content="Tirá de la palanca y probá tu suerte: alineá tres sabores iguales y ganate una soda Vanguardia." />
+  <!-- Página de juego: se llega por QR, no la indexamos -->
+  <meta name="robots" content="noindex" />
+  <meta property="og:title" content="Lotería Vanguardia — probá tu suerte" />
+  <meta property="og:description" content="Alineá tres sabores iguales y ganate una soda." />
+  <meta property="og:image" content="imgs/todas-botellas.jpeg" />
+  <meta name="theme-color" content="#17323b" />
+
+  <link rel="icon" href="imgs/logocirular.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/games.css" />
+</head>
+<body class="game jackpot">
+
+  <div class="jp-bubbles" id="fondoBurbujas" aria-hidden="true"></div>
+
+  <header class="game-top">
+    <a href="index.html" class="game-top__logo" aria-label="Ir al sitio de Soda Vanguardia">
+      <img src="imgs/logocirular.jpeg" alt="Soda Vanguardia" width="48" height="48" />
+    </a>
+    <a href="index.html" class="game-top__link">Ver sabores →</a>
+  </header>
+
+  <main>
+    <div class="jp-title">
+      <span class="eyebrow">Sorteo de las Sierras</span>
+      <h1>LOTERÍA<br /><em>VANGUARDIA</em></h1>
+      <p>Alineá <strong>3 sabores iguales</strong> y ganate una soda.</p>
+    </div>
+
+    <section class="machine" id="maquina" aria-label="Máquina de la suerte">
+      <div class="bulbs" id="focosArriba" aria-hidden="true"></div>
+
+      <div class="reels" id="reels">
+        <div class="reel" data-reel="0"><div class="reel__strip"></div></div>
+        <div class="reel" data-reel="1"><div class="reel__strip"></div></div>
+        <div class="reel" data-reel="2"><div class="reel__strip"></div></div>
+        <div class="payline" aria-hidden="true"></div>
+      </div>
+
+      <div class="panel">
+        <div class="tiros"><strong id="tiros">3</strong><span>Tiros</span></div>
+        <button type="button" class="btn-girar" id="btnGirar">¡GIRAR!</button>
+      </div>
+
+      <div class="bulbs bulbs--bottom" id="focosAbajo" aria-hidden="true"></div>
+      <div class="lever" aria-hidden="true"></div>
+    </section>
+
+    <p class="jp-msg" id="mensaje" role="status" aria-live="polite">Apretá <em>GIRAR</em> y probá tu suerte.</p>
+
+    <section class="ya-jugo" id="yaJugo" hidden></section>
+
+    <section class="paytable" aria-label="Premios en juego">
+      <h2>PREMIOS EN JUEGO</h2>
+      <ul id="listaPremios"></ul>
+      <p>Una soda artesanal de 500cc en envase de vidrio retornable.</p>
+    </section>
+  </main>
+
+  <!-- Premio -->
+  <dialog class="premio" id="premio" aria-labelledby="premioTitulo">
+    <div class="boleto">
+      <div class="boleto__head">
+        <span class="eyebrow">¡Boleto ganador!</span>
+        <h2 id="premioTitulo">¡JACKPOT!</h2>
+      </div>
+      <div class="boleto__img" data-premio-fondo><img data-premio-img src="" alt="" /></div>
+      <div class="boleto__body">
+        <p>Tu premio: una soda <strong data-premio-sabor></strong></p>
+        <span class="codigo-chip" data-premio-codigo></span>
+      </div>
+      <div class="boleto__perf" aria-hidden="true"></div>
+      <div class="boleto__body boleto__btns">
+        <div class="canje-wrap" data-premio-acciones></div>
+        <button type="button" class="btn btn--ghost btn--full" data-premio-cerrar>Cerrar</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="js/juegos-comun.js"></script>
+  <script src="js/jackpot.js"></script>
+</body>
+</html>
