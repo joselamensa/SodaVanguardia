@@ -120,20 +120,42 @@ body.game [hidden] { display: none !important; }
 
 .memo__board.is-fin { opacity: 0.4; pointer-events: none; }
 
+/* Tablero: 14 cartas.
+   · Celulares (< 700px): grilla de 5 columnas x 3 filas = 15 casilleros; la casilla
+     del medio es el logo (.mt-centro), así las 3 filas quedan parejas (5-5-5).
+   · Pantallas anchas (≥ 700px): 7 columnas x 2 filas = 14 exactas, sin logo.
+   Siempre un rectángulo completo, sin filas con menos cartas.                 */
 .memo__board {
-  --gap: 0.55rem;
-  --cols: 4;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  --gap: 0.4rem;
+  --cols: 5;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
   gap: var(--gap);
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 0.9rem 1.5rem;
+  padding: 0 0.6rem 1.5rem;
+}
+
+/* Casillero decorativo del centro (no se toca) */
+.mt-centro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 3 / 4;
+  border: 2px dashed var(--color-primary);
+  border-radius: var(--radius-sm);
+  opacity: 0.8;
+  pointer-events: none;
+}
+.mt-centro img {
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .mt-card {
-  width: calc((100% - var(--gap) * (var(--cols) - 1)) / var(--cols));
+  width: 100%;
   aspect-ratio: 3 / 4;
   perspective: 800px;
   padding: 0;
@@ -203,7 +225,7 @@ body.game [hidden] { display: none !important; }
   padding: 0.22rem 0.15rem 0.28rem;
   text-align: center;
   font-family: var(--font-title);
-  font-size: clamp(0.78rem, 3.4vw, 1.25rem);
+  font-size: clamp(0.6rem, 2.7vw, 0.95rem);
   line-height: 1;
   letter-spacing: 0.04em;
   color: var(--color-primary-dark);
@@ -222,13 +244,61 @@ body.game [hidden] { display: none !important; }
 
 .memo__actions { display: flex; justify-content: center; padding: 0 1rem 2.5rem; }
 
-@media (min-width: 560px) {
-  .memo__board { --cols: 5; --gap: 0.8rem; }
+/* Celulares: encabezado compacto para que el tablero entero entre en pantalla
+   (el juego es contra reloj: que no haya que hacer scroll) */
+.memo .game-top { padding: 0.45rem 1rem; }
+.memo .game-top__logo img { width: 40px; height: 40px; }
+.memo .game-title { padding: 0 1rem 0.5rem; }
+.memo .game-title .eyebrow { display: none; }
+.memo .game-title h1 { font-size: clamp(1.9rem, 8vw, 4.2rem); }
+.memo .game-title h1 br { display: none; }
+.memo .game-title p { margin-top: 0.3rem; font-size: 0.85rem; line-height: 1.35; }
+.memo .game-title .game-title__nota { font-size: 0.75rem; margin-top: 0.15rem; }
+.memo .memo__stats { padding: 0 1rem 0.5rem; gap: 0.5rem; }
+.memo .stat { min-width: 84px; padding: 0.25rem 0.7rem; }
+.memo .stat strong { font-size: 1.45rem; }
+.memo .memo__barra { height: 6px; margin-bottom: 0.7rem; }
+
+@media (min-width: 700px) {
+  .memo__board {
+    --cols: 7;
+    --gap: 0.9rem;
+    padding-bottom: 2rem;
+    /* que las 2 filas entren en el alto de la pantalla: ancho máx. = alto libre x 2,6 */
+    --reserva: 470px;   /* alto que ocupa todo lo que está arriba del tablero */
+    max-width: min(1100px, max(560px, calc((100svh - var(--reserva)) * 2.6)));
+  }
+  .mt-centro { display: none; }
+  .mt-face--front .mt-name { font-size: clamp(0.8rem, 1.5vw, 1.25rem); }
+  .memo .game-top { padding: 0.9rem 1.1rem; }
+  .memo .game-top__logo img { width: 48px; height: 48px; }
+  .memo .game-title { padding: 0.4rem 1.1rem 1rem; }
+  .memo .game-title .eyebrow { display: inline; }
+  .memo .game-title h1 { font-size: clamp(2.6rem, 6vw, 4.2rem); }
+  .memo .game-title h1 br { display: inline; }
+  .memo .game-title p { font-size: 0.95rem; }
+  .memo .game-title .game-title__nota { font-size: 0.8rem; }
+  .memo .memo__stats { padding: 0 1rem 1rem; gap: 0.6rem; }
+  .memo .stat { min-width: 92px; padding: 0.45rem 0.9rem; }
+  .memo .stat strong { font-size: 1.7rem; }
+  .memo .memo__barra { height: 8px; margin-bottom: 1rem; }
 }
-@media (min-width: 900px) {
-  .memo__board { --cols: 7; --gap: 1rem; padding-bottom: 2rem; }
+/* Celular acostado: sin título grande, para que las 2 filas entren en el alto */
+@media (orientation: landscape) and (max-height: 520px) {
+  .memo .game-title .eyebrow,
+  .memo .game-title h1 { display: none; }
+  .memo .game-title { padding: 0 1rem 0.3rem; }
+  .memo .game-title p { margin-top: 0.1rem; font-size: 0.8rem; }
+  .memo .game-title .game-title__nota { font-size: 0.72rem; margin-top: 0; }
+  .memo .game-top { padding: 0.3rem 1rem; }
+  .memo .game-top__logo img { width: 34px; height: 34px; }
+  .memo .memo__stats { padding-bottom: 0.3rem; }
+  .memo .memo__barra { margin-bottom: 0.5rem; }
+  .memo .memo__board { padding-bottom: 1rem; --reserva: 200px; }
+}
+@media (hover: hover) and (pointer: fine) {
   .mt-card { cursor: pointer; }
-  .mt-card:not(.is-flipped):not(.is-matched):hover .mt-card__inner { transform: translateY(-4px); }
+  .mt-card:not(.is-flipped):not(.is-matched):not(:disabled):hover .mt-card__inner { transform: translateY(-4px); }
 }
 
 /* ═════════════ JACKPOT ═════════════ */

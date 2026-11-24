@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     b.type = 'button';
     b.className = 'mt-card';
     b.dataset.id = sabor.id;
+    b.dataset.n = i + 1;
     b.style.setProperty('--color', sabor.color);
     b.style.setProperty('--fondo', sabor.fondo);
     b.setAttribute('aria-label', `Carta ${i + 1}, boca abajo`);
@@ -89,6 +90,14 @@ document.addEventListener('DOMContentLoaded', () => {
     return b;
   }
 
+  function crearCentro() {
+    const d = document.createElement('div');
+    d.className = 'mt-centro';
+    d.setAttribute('aria-hidden', 'true');
+    d.innerHTML = `<img src="${logoSrc}" alt="" draggable="false" />`;
+    return d;
+  }
+
   function nuevaPartida() {
     if (dlgFin.open) dlgFin.close();
     clearInterval(timer);
@@ -101,7 +110,11 @@ document.addEventListener('DOMContentLoaded', () => {
     pintarReloj(LIMITE_MS);
     pintarStats();
     tablero.innerHTML = '';
-    mezclar([...SABORES, ...SABORES]).forEach((s, i) => tablero.appendChild(crearCarta(s, i)));
+    mezclar([...SABORES, ...SABORES]).forEach((s, i) => {
+      // En celular la grilla es de 5x3 = 15: el logo ocupa el casillero del medio
+      if (i === TOTAL_PARES) tablero.appendChild(crearCentro());
+      tablero.appendChild(crearCarta(s, i));
+    });
     pintarNotaPartidas();
     estado.textContent = `Partida nueva. Tenés ${CONFIG.memotestSegundos} segundos desde la primera carta.`;
   }
@@ -183,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (terminado) return;   // si se acabó el tiempo, el tablero queda como está
         [a, b].forEach(c => {
           c.classList.remove('is-flipped');
-          c.setAttribute('aria-label', `Carta ${[...tablero.children].indexOf(c) + 1}, boca abajo`);
+          c.setAttribute('aria-label', `Carta ${c.dataset.n}, boca abajo`);
         });
         abiertas = [];
         bloqueado = false;
